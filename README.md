@@ -1,3 +1,14 @@
+[Sprint 1](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/1) — Pull-request 1.
+
+В файле README.md ветки **sprint_1** не указаны основные роуты. Напишу здесь.
+- `/` — чаты,
+- `/auth` — авторизация,
+- `/signup` — регистрация,
+- `/profile` — профиль,
+- `/edit-profile` — изменение данных,
+- `/edit-password` — изменение пароля,
+- `/server-error` — ошибка 500,
+
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
