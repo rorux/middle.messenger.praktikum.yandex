@@ -1,0 +1,13 @@
+<div class="
+{{#if myMessage}}
+  messages__me
+{{else}}
+  messages__friend
+{{/if}}
+">
+  {{#if (isImg type)}}
+    <img src="{{ content }}" alt="" />
+  {{else}}
+    <p>{{ content }}</p>
+  {{/if}}
+</div>

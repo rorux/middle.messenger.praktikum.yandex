@@ -1,0 +1,220 @@
+@font-face {
+  font-family: "inter";
+  src: url("../static/fonts/Inter-Regular.eot");
+  src: url("../static/fonts/Inter-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../static/fonts/Inter-Regular.woff2") format("woff2"),
+    url("../static/fonts/Inter-Regular.woff") format("woff"),
+    url("../static/fonts/Inter-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "inter";
+  src: url("../static/fonts/Inter-Medium.eot");
+  src: url("../static/fonts/Inter-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../static/fonts/Inter-Medium.woff2") format("woff2"),
+    url("../static/fonts/Inter-Medium.woff") format("woff"),
+    url("../static/fonts/Inter-Medium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "inter";
+  src: url("../static/fonts/Inter-SemiBold.eot");
+  src: url("../static/fonts/Inter-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../static/fonts/Inter-SemiBold.woff2") format("woff2"),
+    url("../static/fonts/Inter-SemiBold.woff") format("woff"),
+    url("../static/fonts/Inter-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin grey-link {
+  color: #999999;
+  svg {
+    fill: #999999;
+  }
+
+  &:hover {
+    color: #bbbbbb;
+    svg {
+      fill: #bbbbbb;
+    }
+  }
+
+  &:active {
+    color: #777777;
+    svg {
+      fill: #777777;
+    }
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  text-align: center;
+  color: #1e1e1e;
+  margin: 0;
+}
+
+.info {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #1e1e1e;
+  margin: 0;
+}
+
+.link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  color: #3369f3;
+  text-decoration: none;
+  display: block;
+
+  &:hover {
+    color: #507ceb;
+  }
+
+  &:active {
+    color: #215df5;
+  }
+}
+
+.link-red {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  color: #ff0000;
+  text-decoration: none;
+  display: block;
+
+  &:hover {
+    color: #fc4a4a;
+  }
+
+  &:active {
+    color: #ce0303;
+  }
+}
+
+.title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #1e1e1e;
+  display: block;
+}
+
+@mixin button {
+  border: none;
+  outline: none;
+  background: #3369f3;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background: #507ceb;
+  }
+
+  &:active {
+    background: #215df5;
+  }
+}
+
+.button {
+  @include button;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.button-circle {
+  @include button;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #999999;
+}
+
+.content-center {
+  margin: auto;
+}
+
+.content-wrap {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.chats-side {
+  width: 310px;
+  box-sizing: border-box;
+  border-right: 1px solid #eaeaea;
+
+  &__top {
+    position: fixed;
+    background-color: #fff;
+  }
+
+  &__to-profile {
+    padding: 20px 10px;
+    display: flex;
+    justify-content: end;
+
+    a {
+      @include grey-link;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      text-decoration: none;
+
+      svg {
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+.chat-area {
+  box-sizing: border-box;
+  flex-grow: 1;
+  padding: 60px 15px;
+  display: flex;
+  flex-direction: column;
+
+  &__empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

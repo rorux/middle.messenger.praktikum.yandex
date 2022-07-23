@@ -1,0 +1,13 @@
+<div class="form__group">
+  <input
+    class="form__input"
+    type="{{type}}"
+    name="{{param}}"
+    id="{{param}}"
+    placeholder=" "
+  />
+  <label for="{{param}}" class="form__label"> {{name}} </label>
+  {{#if errorName}}
+    <div class="form__validation">{{errorName}}</div>
+  {{/if}}
+</div>
