@@ -1,0 +1,82 @@
+.chat-item {
+  &__wrap {
+    &_active {
+      background-color: #e4edfd;
+    }
+  }
+
+  &__container {
+    margin: 0 10px;
+    padding: 12px 0 10px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+  }
+
+  &__avatar {
+    margin: 0 12px 0 0;
+  }
+
+  &__person {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    color: #1e1e1e;
+    display: block;
+    margin: 0 0 2px 0;
+  }
+
+  &__text {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #999999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  &__me {
+    color: #1e1e1e;
+  }
+
+  &__params {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__time {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    color: #999999;
+  }
+
+  &__count {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    background: #3369f3;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

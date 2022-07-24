@@ -1,0 +1,40 @@
+@mixin btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: transparent;
+
+  &:active {
+    svg {
+      fill: #3369f3;
+    }
+  }
+}
+
+.toolbar {
+  padding: 12px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  right: 15px;
+  left: 325px;
+
+  &__person {
+    display: flex;
+    align-items: center;
+  }
+
+  &__toggle {
+    @include btn;
+
+    svg {
+      fill: #1e1e1e;
+    }
+  }
+}

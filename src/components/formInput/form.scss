@@ -1,0 +1,94 @@
+.form {
+  width: 340px;
+  min-height: 450px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 40px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__top {
+    margin: 0 0 30px;
+  }
+
+  &__title {
+    margin: 0 0 40px;
+  }
+
+  &__group {
+    margin: 0 0 20px 0;
+    position: relative;
+    text-align: center;
+  }
+
+  &__input {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    box-sizing: border-box;
+    color: #1e1e1e;
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 1px solid #3369f3;
+    background-color: transparent;
+    outline: none;
+    transition: 0.3s;
+
+    &:hover {
+      border-bottom: 1px solid #99b4fa;
+    }
+    &:focus {
+      border-bottom: 1px solid #0238be;
+
+      ~ .form__label {
+        top: -9px;
+        font-size: 9px;
+        color: #808080;
+        z-index: 1;
+      }
+    }
+    &:not(:placeholder-shown) ~ .form__label {
+      top: -9px;
+      font-size: 9px;
+      color: #808080;
+      z-index: 1;
+    }
+  }
+
+  &__label {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: #999999;
+    position: absolute;
+    top: 12px;
+    left: 0;
+    z-index: -1;
+    transition: 0.3s;
+  }
+
+  &__validation {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    color: #ff2f2f;
+    text-align: left;
+    margin: 5px 0 0;
+  }
+
+  &__submit {
+    width: 100%;
+  }
+
+  &__link {
+    margin: 10px 0 0;
+    font-size: 11px;
+    text-align: center;
+  }
+}

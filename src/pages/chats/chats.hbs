@@ -1,0 +1,17 @@
+<div class="content-wrap">
+  <div class="chats-side">
+    <div class="chats-side__top">
+      {{> linkToProfile}}
+      {{> search}}
+    </div>
+    {{> chatList}}
+  </div>
+  <div class="chat-area">
+    <!-- <div class="chat-area__empty">
+          <span class="message"> Выберите чат, чтобы отправить сообщение</span>
+        </div> -->
+    {{> toolbar}}
+    {{> messageList}}
+    {{> messageForm}}
+  </div>
+</div>

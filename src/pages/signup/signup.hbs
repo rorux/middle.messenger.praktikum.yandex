@@ -1,0 +1,18 @@
+<div class="content-wrap">
+  <div class="content-center">
+    <form class="form" action="#">
+      <div class="form__top">
+        <span class="title form__title">Регистрация</span>
+        {{#each signupInputs}}
+          {{> formInput}}
+        {{/each}}
+      </div>
+      <div class="form__bottom">
+        <button type="submit" class="form__submit button">
+          Зарегистрироваться
+        </button>
+        <a href="./auth" class="link form__link">Войти</a>
+      </div>
+    </form>
+  </div>
+</div>
