@@ -1,9 +1,15 @@
 ## ChatJS
 
 Приложение, написанное на JavaScript без использования фреймворков.
-В качестве сборщика используется **Parcel**, в качестве шаблонизатора – **Handlebars**, препроцессор – **SCSS**. Деплой проекта на хостинге – [chaatt.netlify.app](https://chaatt.netlify.app/)
+
+В качестве сборщика используется **Parcel**, в качестве шаблонизатора – **Handlebars**, препроцессор – **SCSS**.
+
+Внедрен TypeScript. Добавлены классы Component, EventBus, HTTP, Validation. На страницах `/auth`, `/signup`, `/edit-profile`, `/edit-password` работает валидация по событиям _focus_, _blur_, а также при отправке формы.
+
+Деплой проекта на хостинге – [chaatt.netlify.app](https://chaatt.netlify.app/)
 
 ### Страницы
+
 1. `/` — чаты
 1. `/auth` — авторизация
 1. `/signup` — регистрация
@@ -25,4 +31,5 @@
 1. `npm run start` — запуск проекта на 3000 порту
 
 ### Pull requests
+
 - [Sprint 1](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/1)
