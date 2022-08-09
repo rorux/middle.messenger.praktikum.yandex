@@ -25,19 +25,24 @@
   left: 325px;
 
   &__input {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    color: #999999;
     padding: 10px 20px;
     width: 100%;
     box-sizing: border-box;
     border-radius: 25px;
-    border: none;
-    outline: none;
     background-color: #efefef;
     margin: 0 12px 0 0;
+
+    input {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      color: #999999;
+      border: none;
+      outline: none;
+      background-color: #efefef;
+      width: 100%;
+    }
   }
 
   &__file {
