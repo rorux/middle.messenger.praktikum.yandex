@@ -4,16 +4,29 @@
 
 В качестве сборщика используется **Parcel**, в качестве шаблонизатора – **Handlebars**, препроцессор – **SCSS**.
 
-Внедрен TypeScript. Добавлены классы Component, EventBus, HTTP, Validation. На страницах `/auth`, `/signup`, `/edit-profile`, `/edit-password` работает валидация по событиям _focus_, _blur_, а также при отправке формы.
+Внедрен TypeScript. Добавлены классы Component, EventBus, HTTP, Validation. На страницах `/auth`, `/sign-up`, `/edit-profile`, `/edit-password` работает валидация по событиям _focus_, _blur_, а также при отправке формы.
+
+Реализован роутер:
+
+- работает при обновлении страницы;
+- работают переходы "вперед", "назад".
+
+Подключено API:
+
+- регистрация, авторизация, выход из системы;
+- изменение данных пользователя, пароля, аватара;
+- список чатов пользователя, добавление и удаление чатов, добавление пользователей в чаты.
+
+Подключены WebSocket для работы с real-time сообщениями, написаны тесты на Mocha и Chai. Произведена проверка на защиту от XSS и DOS.
 
 Деплой проекта на хостинге – [chaatt.netlify.app](https://chaatt.netlify.app/)
 
 ### Страницы
 
-1. `/` — чаты
+1. `/messenger` — чаты
 1. `/auth` — авторизация
-1. `/signup` — регистрация
-1. `/profile` — профиль
+1. `/sign-up` — регистрация
+1. `/settings` — профиль
 1. `/edit-profile` — изменение данных
 1. `/edit-password` — изменение пароля
 1. `/server-error` — ошибка 500
@@ -28,9 +41,11 @@
 
 1. `npm install` — установка библиотек,
 1. `npm run build` — сборка production версии,
-1. `npm run start` — запуск проекта на 3000 порту
+1. `npm run start` — запуск проекта на 3000 порту,
+1. `npm run test` — запуск тестов.
 
 ### Pull requests
 
 - [Sprint 1](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/1)
 - [Sprint 2](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/2)
+- [Sprint 3](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/3)

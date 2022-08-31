@@ -5,10 +5,15 @@ enum METHODS {
   DELETE = "DELETE",
 }
 
-type TOptions = {
-  [index: string]: string | number | undefined;
+export type TData = { [index: string]: string | number | number[] | undefined } | FormData;
+
+export type TOptions = {
+  data?: TData;
+  headers?: { [index: string]: string };
   timeout?: number;
-};
+}
+
+export type TRequestOptions = { method: METHODS } & TOptions
 
 function queryStringify(data: { [index: string]: string }) {
   if (typeof data !== "object") {
@@ -21,12 +26,11 @@ function queryStringify(data: { [index: string]: string }) {
   }, "?");
 }
 
-export class HTTPTransport {
-  get = (url: string, options: TOptions = {}) => {
+export class HTTP {
+  get = (url: string ) => {
     return this.request(
       url,
-      { ...options, method: METHODS.GET },
-      options.timeout
+      { method: METHODS.GET }
     );
   };
 
@@ -54,7 +58,7 @@ export class HTTPTransport {
     );
   };
 
-  request = (url: string, options: TOptions = {}, timeout = 5000) => {
+  request = (url: string, options: TRequestOptions, timeout = 5000): Promise<XMLHttpRequest> => {
     const { headers = {}, method, data } = options;
 
     return new Promise(function (resolve, reject) {
@@ -68,12 +72,14 @@ export class HTTPTransport {
 
       xhr.open(
         method as METHODS,
-        isGet && !!data ? `${url}${queryStringify(data)}` : url
+        isGet && !!data ? `${url}${queryStringify(data as { [index: string]: string })}` : `${url}`
       );
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
+
+      xhr.withCredentials = true;
 
       xhr.onload = function () {
         resolve(xhr);
@@ -88,7 +94,10 @@ export class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        if(data instanceof FormData)
+          xhr.send(data);
+        else
+          xhr.send(JSON.stringify(data));
       }
     });
   };

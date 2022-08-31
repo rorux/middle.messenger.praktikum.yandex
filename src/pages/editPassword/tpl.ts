@@ -13,5 +13,6 @@ export default `
         Сохранить
       </button>
     </div>
+    <div class="error"></div>
   </form>
 `;

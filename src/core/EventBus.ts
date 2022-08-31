@@ -9,7 +9,7 @@ export default class EventBus {
     this.listeners = {};
   }
 
-  on(event: string, callback: () => void) {
+  on(event: string | number, callback: () => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -25,7 +25,7 @@ export default class EventBus {
     );
   }
 
-  emit(event: string, ...args) {
+  emit(event: string | number, ...args) {
     if (!this.listeners[event]) {
       throw new Event(`Нет события: ${event}`);
     }

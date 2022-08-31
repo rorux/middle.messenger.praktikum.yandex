@@ -1,8 +1,8 @@
-#new-avatar {
+#avatar {
   display: none;
 }
 
-.new-avatar-label {
+.avatar-label {
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -26,8 +26,11 @@
   text-align: center;
 
   &__avatar {
-    margin: 0 0 60px;
+    margin: 20px auto 60px;
     border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     img {
       border-radius: 50%;
@@ -35,10 +38,14 @@
     &_hover {
       position: relative;
 
-      &:hover > .new-avatar-label {
+      &:hover > .avatar-label {
         display: flex;
       }
     }
+  }
+
+  &__avatar-send {
+    margin-top: 10px;
   }
 
   &__title {
@@ -46,7 +53,7 @@
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    margin: 15px 0 0;
+    margin: 5px 0 0;
     color: #1e1e1e;
   }
 

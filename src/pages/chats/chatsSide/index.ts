@@ -3,6 +3,7 @@ import tpl from "./tpl";
 import LinkToProfile from "../../../components/linkToProfile";
 import Search from "../../../components/search";
 import chatList from "../../../components/chatList";
+import { ChatsAPI } from "../../../api";
 
 export class ChatsSide extends Component {
   render() {
@@ -10,14 +11,19 @@ export class ChatsSide extends Component {
   }
 }
 
-export default () =>
-  new ChatsSide("div", {
-    attr: { class: "chats-side" },
-    linkToProfile: new LinkToProfile("div", {
-      attr: { class: "chats-side__to-profile" },
-    }),
-    search: new Search("div", {
-      attr: { class: "search" },
-    }),
-    chatList: chatList(),
-  });
+export default (): Promise<Component> => {
+  return ChatsAPI.getChats().then(
+    resGetChats => {
+      return new ChatsSide("div", {
+        attr: {class: "chats-side"},
+        linkToProfile: new LinkToProfile("div", {
+          attr: {class: "chats-side__to-profile"},
+        }),
+        search: new Search("div", {
+          attr: {class: "search"},
+        }),
+        chatList: chatList(resGetChats?.response),
+      })
+    }
+  )
+}

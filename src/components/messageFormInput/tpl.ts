@@ -1,1 +1,1 @@
-export default `<input type="text" name="message" placeholder="Сообщение" />`;
+export default `<input type="text" name="message" id="message" placeholder="Сообщение" />`;

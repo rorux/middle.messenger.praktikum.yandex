@@ -1,6 +1,10 @@
 import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInput from "../../components/formInput";
+import Validation from "../../services/Validation";
+import { AuthAPI } from "../../api";
+import Router from "../../core/Router";
+import { TSignUpData } from "../../api/auth";
 
 export class Signup extends Component {
   render() {
@@ -8,7 +12,48 @@ export class Signup extends Component {
   }
   addEvents() {
     this.addEventsForms();
-    this.addSubmitFormValidation();
+
+    const form = this._element.querySelector("form") as HTMLFormElement;
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let errors = 0;
+      const dataForm: {
+        [index: string]: string;
+      } = {};
+
+      const errorMsg = this._element.querySelector(".error") as HTMLElement;
+
+      this._element
+        .querySelectorAll("input")
+        .forEach((input: HTMLInputElement) => {
+          const validationBlock = this._element.querySelector(
+            `#${input.id}-validation`
+          );
+          Validation.focus(
+            input.value,
+            input.id,
+            validationBlock as HTMLElement
+          );
+          if (validationBlock?.innerHTML) errors++;
+          else dataForm[input.id] = input.value;
+        });
+
+      if (!errors) {
+        const { password_again, ...signUpData } = dataForm;
+
+        AuthAPI.signUp({
+          data: signUpData as TSignUpData,
+          headers: { 'Content-Type': 'application/json' } }
+        ).then(result => {
+          if(result?.status !== 200 && result?.response.reason) {
+            errorMsg.innerText = result?.response.reason
+          } else (new Router()).go('/auth');
+        }).catch(error => console.log(error))
+
+        console.log("Form submitted..");
+      } else console.log("Errors of validation!");
+    });
   }
 }
 

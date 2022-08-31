@@ -14,7 +14,8 @@ export default `
       <button type="submit" class="form__submit button">
         Зарегистрироваться
       </button>
-      <a href="./auth" class="link form__link">Войти</a>
+      <a href="/auth" class="link form__link">Войти</a>
     </div>
+    <div class="error"></div>
   </form>
 `;

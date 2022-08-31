@@ -9,7 +9,8 @@ export default `
       <button type="submit" class="form__submit button">
         Авторизоваться
       </button>
-      <a href="./signup" class="link form__link">Нет аккаунта?</a>
+      <a href="/sign-up" class="link form__link">Нет аккаунта?</a>
     </div>
+    <div class="error"></div>
   </form>
 `;

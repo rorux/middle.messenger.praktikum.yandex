@@ -1,7 +1,10 @@
 import Component from "../../core/Component";
 import tpl from "./tpl";
 import MessageItem from "../messageItem";
+import { TChat } from "../../api/chats";
+import { Actions } from "../../core/Store";
 import "./messages.scss";
+import connect from "../../core/Store/Connect";
 
 export class MessageList extends Component {
   render() {
@@ -9,8 +12,13 @@ export class MessageList extends Component {
   }
 }
 
+const MessageListConnectedStore = connect(MessageList, (state) => {
+  return state.chat ?? {}
+})
+
 export default () =>
-  new MessageList("section", {
+  new MessageListConnectedStore("section", {
+    name: (Actions.getChatState() as TChat).name,
     attr: { class: "messages" },
     messageItem1: new MessageItem("div", {
       type: "text",
