@@ -1,5 +1,5 @@
 export default `
-  <a href="#">Профиль
+  <a href="/settings">Профиль
     <svg
       width="6"
       height="10"

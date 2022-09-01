@@ -8,7 +8,7 @@ export default `
       height="34"
     />
     <div class="chat-item__content">
-      <span class="chat-item__person">Вадим</span>
+      <span class="chat-item__person">{{firstName}}</span>
     </div>
   </div>
   <button class="toolbar__toggle">

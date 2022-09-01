@@ -36,9 +36,9 @@ export default class Validation {
         break;
       case "password":
       case "password_again":
-      case "old-password":
-      case "new-password":
-      case "new-password-repeat":
+      case "oldPassword":
+      case "newPassword":
+      case "newPassword-repeat":
         focusPassword(value, validationBlock);
         break;
     }
@@ -66,9 +66,9 @@ export default class Validation {
         break;
       case "password":
       case "password_again":
-      case "old-password":
-      case "new-password":
-      case "new-password-repeat":
+      case "oldPassword":
+      case "newPassword":
+      case "newPassword-repeat":
         blurPassword(value, validationBlock);
         break;
     }

@@ -3,7 +3,7 @@ import Handlebars from "handlebars";
 import EventBus from "./EventBus";
 import Validation from "../services/Validation";
 
-type TpropsAndChilds = {
+export type TpropsAndChilds = {
   [index: string]: string | object | Component;
 };
 
@@ -213,8 +213,6 @@ export default class Component {
   }
 
   componentDidUpdate(oldProps: TpropsAndChilds, newProps: TpropsAndChilds) {
-    oldProps;
-    newProps;
     return true;
   }
 
@@ -243,7 +241,7 @@ export default class Component {
         return typeof value === "function" ? value.bind(target) : value;
       },
 
-      set(target: TpropsAndChilds, prop: string, value) {
+      set: (target: TpropsAndChilds, prop: string, value) => {
         if (target[prop] !== value) {
           target[prop] = value;
           this._setUpdate = true;
@@ -254,7 +252,7 @@ export default class Component {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = "flex";
   }
 
   hide() {

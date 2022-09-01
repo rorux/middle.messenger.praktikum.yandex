@@ -1,7 +1,7 @@
 export default `
   <form class="form-edit" action="#">
     <div class="form-edit__avatar">
-      <img src="img/avatar-lg.png" alt="" />
+      <img src="{{avatarPicture}}" alt="" width="130" height="130" />
     </div>
 
     {{{ formInputEditEmail }}}
@@ -16,5 +16,6 @@ export default `
         Сохранить
       </button>
     </div>
+    <div class="error"></div>
   </form>
 `;
