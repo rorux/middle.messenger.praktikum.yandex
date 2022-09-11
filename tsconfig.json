@@ -1,16 +1,21 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "lib": ["es2017", "dom"],
     "module": "commonjs",
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+//    "target": "es5",
+    "allowJs": true,
+    "skipDefaultLibCheck": true
   },
   "include": ["src", "test/index.spec.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "files": ["src/index.ts"]
 }

@@ -1,7 +1,6 @@
 import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInputEdit from "../../components/formInputEdit";
-import Validation from "../../services/Validation";
 import { UsersAPI } from "../../api";
 import Router from "../../core/Router";
 import { validateForm } from "../../services/Validation/functions";
@@ -22,10 +21,12 @@ export class EditPassword extends Component {
 
       if (dataForm) {
         const { "newPassword-repeat": newPasswordRepeat, ...editPasswordData } = dataForm;
+        console.log(newPasswordRepeat);
 
         (async () => {
           try {
             const result = await UsersAPI.editPassword({
+              //@ts-ignore
               data: editPasswordData,
               headers: { 'Content-Type': 'application/json' }
             });

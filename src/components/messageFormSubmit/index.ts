@@ -63,6 +63,7 @@ export default class MessageFormSubmit extends Component {
     });
 
     (this._props.socket as WebSocket).addEventListener('error', event => {
+      //@ts-ignore
       console.log('Ошибка', event.message);
     });
   }

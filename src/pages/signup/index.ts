@@ -1,7 +1,6 @@
 import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInput from "../../components/formInput";
-import Validation from "../../services/Validation";
 import { AuthAPI } from "../../api";
 import Router from "../../core/Router";
 import { TSignUpData } from "../../api/auth";
@@ -23,6 +22,7 @@ export class Signup extends Component {
 
       if (dataForm) {
         const { password_again, ...signUpData } = dataForm;
+        console.log(password_again);
 
         (async () => {
           try {

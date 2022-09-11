@@ -2,8 +2,7 @@ import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInputEdit from "../../components/formInputEdit";
 import { TError, UsersAPI } from "../../api";
-import Validation from "../../services/Validation";
-import { TUser } from "../../api/auth";
+import { TSignUpData, TUser } from "../../api/auth";
 import { Actions } from "../../core/Store";
 import {validateForm} from "../../services/Validation/functions";
 
@@ -25,7 +24,7 @@ export class EditProfile extends Component {
         (async () => {
           try {
             const result = await UsersAPI.editProfile({
-              data: dataForm,
+              data: dataForm as TSignUpData,
               headers: {'Content-Type': 'application/json'}
             });
 

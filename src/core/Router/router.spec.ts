@@ -8,7 +8,9 @@ describe('Checking Router', () => {
     const router = new Router('#root');
 
     router
+      //@ts-ignore
       .use('/auth', EmptyLayout, 'div', {content: 'auth'})
+      //@ts-ignore
       .use('/sign-up', EmptyLayout, 'div', {content: 'signup'})
 
     expect(router.routes.length).to.eq(2)

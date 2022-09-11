@@ -21,6 +21,7 @@ export default class Route {
 
     if(!this.block)
     {
+      //@ts-ignore
       this.block = new this.component(this.tag, this.props);
       renderDOM(this.props.rootQuery, this.block);
       return;
