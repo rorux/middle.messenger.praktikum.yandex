@@ -2,7 +2,7 @@
 
 Приложение, написанное на JavaScript без использования фреймворков.
 
-В качестве сборщика используется **Parcel**, в качестве шаблонизатора – **Handlebars**, препроцессор – **SCSS**.
+В качестве сборщика используется **Webpack**, в качестве шаблонизатора – **Handlebars**, препроцессор – **SCSS**.
 
 Внедрен TypeScript. Добавлены классы Component, EventBus, HTTP, Validation. На страницах `/auth`, `/sign-up`, `/edit-profile`, `/edit-password` работает валидация по событиям _focus_, _blur_, а также при отправке формы.
 
@@ -44,8 +44,14 @@
 1. `npm run start` — запуск проекта на 3000 порту,
 1. `npm run test` — запуск тестов.
 
+### Docker
+
+1. `docker build . -t sandbox` — сборка образа,
+1. `docker run -d -p 8082:3000 sandbox` — запуск образа,
+
 ### Pull requests
 
 - [Sprint 1](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/1)
 - [Sprint 2](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/2)
 - [Sprint 3](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/3)
+- [Sprint 4](https://github.com/rorux/middle.messenger.praktikum.yandex/pull/4)
