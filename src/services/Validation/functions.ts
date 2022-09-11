@@ -5,6 +5,7 @@ import {
   emailRegexp,
   passwordRegexp,
 } from "./constants";
+import Validation from "./index";
 
 export const focusLogin = (value: string, validationBlock: HTMLElement) => {
   if (!value) validationBlock.innerText = "Введите логин";
@@ -74,3 +75,22 @@ export const blurPassword = (value: string, validationBlock: HTMLElement) => {
     validationBlock.innerText = "Неверный пароль";
   else validationBlock.innerText = "";
 };
+
+export const validateForm = (element: HTMLElement) => {
+  let errors = 0;
+  const dataForm: { [index: string]: string } = {};
+  element
+    .querySelectorAll("input")
+    .forEach((input: HTMLInputElement) => {
+      const validationBlock = element.querySelector(`#${input.id}-validation`);
+      Validation.focus(
+        input.value,
+        input.id,
+        validationBlock as HTMLElement
+      );
+      if (validationBlock?.innerHTML) errors++;
+      else dataForm[input.id] = input.value;
+    });
+  if(!errors) return dataForm;
+  else return false;
+}

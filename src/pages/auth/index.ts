@@ -1,12 +1,11 @@
 import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInput from "../../components/formInput";
-import Validation from "../../services/Validation";
 import Router from "../../core/Router";
 import { AuthAPI } from "../../api";
-import { TLoginData } from "../../api/auth";
 import { Actions } from "../../core/Store";
 import connect from "../../core/Store/Connect";
+import { validateForm } from "../../services/Validation/functions";
 
 export class Auth extends Component {
   render() {
@@ -15,47 +14,29 @@ export class Auth extends Component {
   addEvents() {
     this.addEventsForms();
 
-    const form = this._element.querySelector("form") as HTMLFormElement;
-    form.addEventListener("submit", (e) => {
+    const form = this._element.querySelector<HTMLFormElement>("form");
+    form?.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      let errors = 0;
-      const dataForm: TLoginData = {};
+      const errorMsg = this._element.querySelector<HTMLElement>(".error");
+      const dataForm = validateForm(this._element);
 
-      const errorMsg = this._element.querySelector(".error") as HTMLElement;
+      if (dataForm) {
+        (async () => {
+          const result = await AuthAPI.login({
+            data: dataForm,
+            headers: { 'Content-Type': 'application/json' }
+          })
 
-      this._element
-        .querySelectorAll("input")
-        .forEach((input: HTMLInputElement) => {
-          const validationBlock = this._element.querySelector(
-            `#${input.id}-validation`
-          );
-          Validation.focus(
-            input.value,
-            input.id,
-            validationBlock as HTMLElement
-          );
-          if (validationBlock?.innerHTML) errors++;
-          else dataForm[input.id] = input.value;
-        });
-
-      if (!errors) {
-
-        AuthAPI.login({
-          data: dataForm,
-          headers: { 'Content-Type': 'application/json' }
-        }).then(result => {
-          if(result?.status !== 200 && result?.response.reason) {
-            errorMsg.innerText = result?.response.reason
+          if(result?.status !== 200) {
+            (errorMsg as HTMLElement).innerText = JSON.parse(result?.response).reason
           } else {
-            AuthAPI.getUserInfo().then(
-              resGetUser => Actions.changeUserData(resGetUser.response)
-            );
+            console.log("Form submitted..");
+            const resGetUser = await AuthAPI.getUserInfo();
+            Actions.changeUserData(resGetUser.response);
             (new Router()).go('/messenger');
           }
-        })
-
-        console.log("Form submitted..");
+        })();
       } else console.log("Errors of validation!");
     });
   }

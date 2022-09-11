@@ -1,4 +1,4 @@
-import Component, {TpropsAndChilds} from "../../../core/Component";
+import Component from "../../../core/Component";
 import tpl from "./tpl";
 import Toolbar from "../../../components/toolbar";
 import messageList from "../../../components/messageList";

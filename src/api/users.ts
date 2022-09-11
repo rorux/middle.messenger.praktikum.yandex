@@ -1,13 +1,14 @@
 import {HTTP, TOptions} from '../core/HTTP';
 import { BASE_URL_API } from "./constants";
-import { TSignUp } from "./auth";
+import { TSignUp, TUser } from "./auth";
+import { TError, TResponse, TStatus } from "./";
 
 const httpInstance = new HTTP;
 
-type TEditPassword = {
+export type TEditPassword = {
   data : {
-    "oldPassword": "string",
-    "newPassword": "string",
+    oldPassword: string,
+    newPassword: string,
   },
   headers: {
     [index: string]: string
@@ -15,11 +16,11 @@ type TEditPassword = {
 }
 
 const UsersAPI = {
-  editProfile: async (data: TSignUp) => {
+  editProfile: async (data: TSignUp): Promise<TResponse<TUser | TError>> => {
     try {
       const res = await httpInstance.put(`${BASE_URL_API}/api/v2/user/profile`, data)
       return {
-        status: res.status,
+        status: <TStatus>res.status,
         response: JSON.parse(res.response)
       }
     } catch (error) {
@@ -27,11 +28,12 @@ const UsersAPI = {
     }
   },
 
-  editPassword: async (data: TEditPassword) => {
+  editPassword: async (data: TEditPassword): Promise<TResponse<string>> => {
+    console.log(data)
     try {
       const res = await httpInstance.put(`${BASE_URL_API}/api/v2/user/password`, data)
       return {
-        status: res.status,
+        status: <TStatus>res.status,
         response: JSON.parse(res.response)
       }
     } catch (error) {
@@ -39,11 +41,11 @@ const UsersAPI = {
     }
   },
 
-  changeAvatar: async (data: TOptions) => {
+  changeAvatar: async (data: TOptions): Promise<TResponse<string>> => {
     try {
       const res = await httpInstance.put(`${BASE_URL_API}/api/v2/user/profile/avatar`, data)
       return {
-        status: res.status,
+        status: <TStatus>res.status,
         response: JSON.parse(res.response)
       }
     } catch (error) {

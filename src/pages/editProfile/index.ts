@@ -1,10 +1,11 @@
-import Component, {TpropsAndChilds} from "../../core/Component";
+import Component from "../../core/Component";
 import tpl from "./tpl";
 import formInputEdit from "../../components/formInputEdit";
-import { UsersAPI } from "../../api";
+import { TError, UsersAPI } from "../../api";
 import Validation from "../../services/Validation";
-import {TUser} from "../../api/auth";
+import { TUser } from "../../api/auth";
 import { Actions } from "../../core/Store";
+import {validateForm} from "../../services/Validation/functions";
 
 export class EditProfile extends Component {
   render() {
@@ -13,46 +14,31 @@ export class EditProfile extends Component {
   addEvents() {
     this.addEventsForms();
 
-    const form = this._element.querySelector("form") as HTMLFormElement;
-    form.addEventListener("submit", (e) => {
+    const form = this._element.querySelector<HTMLFormElement>("form");
+    form?.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      let errors = 0;
-      const dataForm: {
-        [index: string]: string;
-      } = {};
+      const errorMsg = this._element.querySelector<HTMLElement>(".error");
+      const dataForm = validateForm(this._element);
 
-      const errorMsg = this._element.querySelector(".error") as HTMLElement;
+      if (dataForm) {
+        (async () => {
+          try {
+            const result = await UsersAPI.editProfile({
+              data: dataForm,
+              headers: {'Content-Type': 'application/json'}
+            });
 
-      this._element
-        .querySelectorAll("input")
-        .forEach((input: HTMLInputElement) => {
-          const validationBlock = this._element.querySelector(
-            `#${input.id}-validation`
-          );
-          Validation.focus(
-            input.value,
-            input.id,
-            validationBlock as HTMLElement
-          );
-          if (validationBlock?.innerHTML) errors++;
-          else dataForm[input.id] = input.value;
-        });
-
-      if (!errors) {
-
-        UsersAPI.editProfile({
-          data: dataForm,
-          headers: { 'Content-Type': 'application/json' }
-        }).then(result => {
-          if(result?.status !== 200 && result?.response.reason) {
-            errorMsg.innerText = result?.response.reason
-          } else {
-            Actions.changeUserData({ ...result?.response });
+            if (result?.status !== 200) {
+              (errorMsg as HTMLElement).innerText = (result?.response as TError).reason
+            } else {
+              Actions.changeUserData({...result?.response as TUser});
+              console.log("Form submitted..");
+            }
+          } catch(error) {
+            console.log(error)
           }
-        }).catch(error => console.log(error))
-
-        console.log("Form submitted..");
+        })()
       } else console.log("Errors of validation!");
     });
   }
