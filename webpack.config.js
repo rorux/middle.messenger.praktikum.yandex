@@ -62,7 +62,16 @@ const config = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
-        alias: { 'handlebars': 'handlebars/dist/handlebars.js' }
+        alias: {
+          '@components': path.resolve(__dirname, "src", "components"),
+          '@api': path.resolve(__dirname, "src", "api"),
+          '@core': path.resolve(__dirname, "src", "core"),
+          '@layout': path.resolve(__dirname, "src", "layout"),
+          '@pages': path.resolve(__dirname, "src", "pages"),
+          '@services': path.resolve(__dirname, "src", "services"),
+          '@utils': path.resolve(__dirname, "src", "utils"),
+          'handlebars': 'handlebars/dist/handlebars.js'
+        }
     },
 };
 

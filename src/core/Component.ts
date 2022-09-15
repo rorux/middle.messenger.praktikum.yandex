@@ -1,7 +1,7 @@
 import { v4 as makeUUID } from "uuid";
 import Handlebars from "handlebars";
 import EventBus from "./EventBus";
-import Validation from "../services/Validation";
+import Validation from "@services/Validation";
 
 export type TpropsAndChilds = {
   [index: string]: string | object | Component;

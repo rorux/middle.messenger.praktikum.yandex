@@ -1,10 +1,10 @@
-import Component from "../../core/Component";
+import Component from "@core/Component";
 import tpl from "./tpl";
-import ChatItem from "../chatItem";
-import formInput from "../formInput";
-import selectInput from "../selectInput";
+import ChatItem from "@components/chatItem";
+import formInput from "@components/formInput";
+import selectInput from "@components/selectInput";
 import { ChatsAPI } from "../../api";
-import { TChatAPI } from "../../api/chats";
+import { TChatAPI } from "@api/chats";
 import "./chatList.scss";
 
 export class ChatList extends Component {

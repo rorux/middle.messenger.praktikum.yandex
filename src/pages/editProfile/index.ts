@@ -1,10 +1,10 @@
-import Component from "../../core/Component";
-import tpl from "./tpl";
-import formInputEdit from "../../components/formInputEdit";
+import Component from "@core/Component";
+import formInputEdit from "@components/formInputEdit";
 import { TError, UsersAPI } from "../../api";
-import { TSignUpData, TUser } from "../../api/auth";
-import { Actions } from "../../core/Store";
-import {validateForm} from "../../services/Validation/functions";
+import { TSignUpData, TUser } from "@api/auth";
+import { Actions } from "@core/Store";
+import { validateForm } from "@services/Validation/functions";
+import tpl from "./tpl";
 
 export class EditProfile extends Component {
   render() {

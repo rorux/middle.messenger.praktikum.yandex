@@ -1,11 +1,11 @@
-import Component from "../../core/Component";
+import Component from "@core/Component";
 import tpl from "./tpl";
-import formInput from "../../components/formInput";
-import Router from "../../core/Router";
+import formInput from '@components/formInput';
+import Router from "@core/Router";
 import { AuthAPI } from "../../api";
-import { Actions } from "../../core/Store";
-import connect from "../../core/Store/Connect";
-import { validateForm } from "../../services/Validation/functions";
+import { Actions } from "@core/Store";
+import connect from "@core/Store/Connect";
+import { validateForm } from "@services/Validation/functions";
 
 export class Auth extends Component {
   render() {

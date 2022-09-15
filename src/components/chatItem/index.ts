@@ -1,7 +1,7 @@
-import Component from "../../core/Component";
+import Component from "@core/Component";
 import tpl from "./tpl";
 import { ChatsAPI } from "../../api";
-import { Actions } from "../../core/Store";
+import { Actions } from "@core/Store";
 import "./chatItem.scss";
 
 export default class ChatItem extends Component {

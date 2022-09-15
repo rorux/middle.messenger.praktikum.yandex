@@ -1,10 +1,10 @@
-import Component from "../../../core/Component";
+import Component from "@core/Component";
+import Toolbar from "@components/toolbar";
+import messageList from "@components/messageList";
+import messageForm from "@components/messageForm";
+import { Actions } from "@core/Store";
+import { TChat } from "@api/chats";
 import tpl from "./tpl";
-import Toolbar from "../../../components/toolbar";
-import messageList from "../../../components/messageList";
-import messageForm from "../../../components/messageForm";
-import { Actions } from "../../../core/Store";
-import { TChat } from "../../../api/chats";
 
 export class ChatsArea extends Component {
   render() {

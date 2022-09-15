@@ -1,10 +1,10 @@
-import Component from "../../core/Component";
-import tpl from "./tpl";
-import formInput from "../../components/formInput";
+import Component from "@core/Component";
+import formInput from "@components/formInput";
 import { AuthAPI } from "../../api";
-import Router from "../../core/Router";
-import { TSignUpData } from "../../api/auth";
-import { validateForm } from "../../services/Validation/functions";
+import Router from "@core/Router";
+import { TSignUpData } from "@api/auth";
+import { validateForm } from "@services/Validation/functions";
+import tpl from "./tpl";
 
 export class Signup extends Component {
   render() {

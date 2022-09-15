@@ -1,8 +1,8 @@
-import Component, { TpropsAndChilds } from "../../core/Component";
+import Component, { TpropsAndChilds } from "@core/Component";
+import { Actions } from "@core/Store";
+import { TUser } from "@api/auth"
+import { TChat } from "@api/chats";
 import tpl from "./tpl";
-import { Actions } from "../../core/Store";
-import { TUser } from "../../api/auth"
-import { TChat } from "../../api/chats";
 
 const addNewMessage = (className: string, text: string): void => {
   const messageListWrap = document.querySelector<HTMLDivElement>("#message-list");

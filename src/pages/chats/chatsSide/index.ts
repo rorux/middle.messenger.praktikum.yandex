@@ -1,9 +1,9 @@
-import Component from "../../../core/Component";
-import tpl from "./tpl";
-import LinkToProfile from "../../../components/linkToProfile";
-import Search from "../../../components/search";
-import chatList from "../../../components/chatList";
+import Component from "@core/Component";
+import LinkToProfile from "@components/linkToProfile";
+import Search from "@components/search";
+import chatList from "@components/chatList";
 import { ChatsAPI } from "../../../api";
+import tpl from "./tpl";
 
 export class ChatsSide extends Component {
   render() {

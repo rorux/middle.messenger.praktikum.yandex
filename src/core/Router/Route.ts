@@ -1,4 +1,4 @@
-import { default as renderDOM } from '../../utils/render';
+import { default as renderDOM } from '@utils/render';
 import Component from "../Component";
 
 export default class Route {

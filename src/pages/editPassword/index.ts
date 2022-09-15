@@ -1,9 +1,9 @@
-import Component from "../../core/Component";
-import tpl from "./tpl";
-import formInputEdit from "../../components/formInputEdit";
+import Component from "@core/Component";
+import formInputEdit from "@components/formInputEdit";
 import { UsersAPI } from "../../api";
-import Router from "../../core/Router";
-import { validateForm } from "../../services/Validation/functions";
+import Router from "@core/Router";
+import { validateForm } from "@services/Validation/functions";
+import tpl from "./tpl";
 
 export class EditPassword extends Component {
   render() {

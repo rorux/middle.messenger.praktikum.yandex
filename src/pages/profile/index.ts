@@ -1,12 +1,12 @@
-import Component, {TpropsAndChilds} from "../../core/Component";
-import tpl from "./tpl";
-import formInputEdit from "../../components/formInputEdit";
+import Component, {TpropsAndChilds} from "@core/Component";
+import formInputEdit from "@components/formInputEdit";
 import { AuthAPI, UsersAPI } from "../../api";
-import Router from "../../core/Router";
-import { Actions } from "../../core/Store";
-import Store from "../../core/Store/Store";
-import { TUser } from "../../api/auth";
-import connect from "../../core/Store/Connect";
+import Router from "@core/Router";
+import { Actions } from "@core/Store";
+import Store from "@core/Store/Store";
+import { TUser } from "@api/auth";
+import connect from "@core/Store/Connect";
+import tpl from "./tpl";
 
 export class Profile extends Component {
   constructor(tag: string, props: TpropsAndChilds) {
