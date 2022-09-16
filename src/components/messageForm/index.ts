@@ -1,8 +1,8 @@
-import Component from "../../core/Component";
+import Component from "@core/Component";
+import MessageFormFile from "@components/messageFormFile";
+import MessageFormInput from "@components/messageFormInput";
+import MessageFormSubmit from "@components/messageFormSubmit";
 import tpl from "./tpl";
-import MessageFormFile from "../messageFormFile";
-import MessageFormInput from "../messageFormInput";
-import MessageFormSubmit from "../messageFormSubmit";
 import "./messageForm.scss";
 
 export class MessageForm extends Component {

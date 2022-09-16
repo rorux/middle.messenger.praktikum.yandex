@@ -1,6 +1,6 @@
 import Store from './Store';
-import { TUser } from "../../api/auth";
-import { TChat } from "../../api/chats";
+import { TUser } from "@api/auth";
+import { TChat } from "@api/chats";
 
 const store = new Store();
 

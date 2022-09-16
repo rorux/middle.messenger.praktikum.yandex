@@ -1,7 +1,7 @@
 import { v4 as makeUUID } from "uuid";
 import Handlebars from "handlebars";
 import EventBus from "./EventBus";
-import Validation from "../services/Validation";
+import Validation from "@services/Validation";
 
 export type TpropsAndChilds = {
   [index: string]: string | object | Component;
@@ -52,7 +52,7 @@ export default class Component {
 
   createDocumentElement(tag: string) {
     const element = document.createElement(tag);
-
+    //@ts-ignore
     if (this._props.settings?.withInternalID)
       element.setAttribute("data-id", this._id);
 
@@ -63,6 +63,7 @@ export default class Component {
     const block = this.render();
     this.removeEvents();
     this._element.innerHTML = "";
+    //@ts-ignore
     this._element.appendChild(block);
     this.addEvents();
     this.addAttribute();
@@ -213,6 +214,8 @@ export default class Component {
   }
 
   componentDidUpdate(oldProps: TpropsAndChilds, newProps: TpropsAndChilds) {
+    console.log(oldProps);
+    console.log(newProps);
     return true;
   }
 

@@ -1,9 +1,9 @@
-import Component from "../../../core/Component";
-import tpl from "./tpl";
-import LinkToProfile from "../../../components/linkToProfile";
-import Search from "../../../components/search";
-import chatList from "../../../components/chatList";
+import Component from "@core/Component";
+import LinkToProfile from "@components/linkToProfile";
+import Search from "@components/search";
+import chatList from "@components/chatList";
 import { ChatsAPI } from "../../../api";
+import tpl from "./tpl";
 
 export class ChatsSide extends Component {
   render() {
@@ -11,19 +11,18 @@ export class ChatsSide extends Component {
   }
 }
 
-export default (): Promise<Component> => {
-  return ChatsAPI.getChats().then(
-    resGetChats => {
-      return new ChatsSide("div", {
-        attr: {class: "chats-side"},
-        linkToProfile: new LinkToProfile("div", {
-          attr: {class: "chats-side__to-profile"},
-        }),
-        search: new Search("div", {
-          attr: {class: "search"},
-        }),
-        chatList: chatList(resGetChats?.response),
-      })
-    }
-  )
-}
+export default (): Promise<Component> =>
+  (async () => {
+    const resGetChats = await ChatsAPI.getChats();
+    return new ChatsSide("div", {
+      attr: {class: "chats-side"},
+      linkToProfile: new LinkToProfile("div", {
+        attr: {class: "chats-side__to-profile"},
+      }),
+      search: new Search("div", {
+        attr: {class: "search"},
+      }),
+      chatList: chatList(resGetChats?.response),
+    })
+  })()
+

@@ -41,7 +41,7 @@
 
 1. `npm install` — установка библиотек,
 1. `npm run build` — сборка production версии,
-1. `npm run start` — запуск проекта на 3000 порту,
+1. `npm run serve` — запуск проекта на 8080 порту,
 1. `npm run test` — запуск тестов.
 
 ### Docker

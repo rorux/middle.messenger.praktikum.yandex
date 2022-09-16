@@ -1,6 +1,6 @@
 import Route from './Route';
 import Component from "../Component";
-import { defaultProps } from "../../utils/defaultProps";
+import { defaultProps } from "@utils/defaultProps";
 import { AuthAPI } from "../../api";
 
 export default class Router {

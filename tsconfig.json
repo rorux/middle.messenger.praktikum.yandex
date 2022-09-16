@@ -1,16 +1,35 @@
 {
   "compilerOptions": {
-    "lib": ["es2017", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "esnext"],
     "module": "commonjs",
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "target": "es5",
+    "allowJs": true,
+    "skipDefaultLibCheck": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@api/*": ["src/api/*"],
+      "@core/*": ["src/core/*"],
+      "@layout/*": ["src/layout/*"],
+      "@pages/*": ["src/pages/*"],
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
+  "plugins": [
+    { "transform": "typescript-transform-paths" }
+  ],
   "include": ["src", "test/index.spec.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "files": ["src/index.ts"]
 }

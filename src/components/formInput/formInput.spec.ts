@@ -1,5 +1,5 @@
-import { expect } from "chai";
 import formInput from "./index";
+import 'jsdom-global/register';
 
 describe('Checking formInput Component', () => {
   it('should render correctly', () => {
@@ -11,6 +11,6 @@ describe('Checking formInput Component', () => {
       formInputComponent
         .render()
         .querySelector('.form__label')?.textContent?.trim()
-    ).to.eq('Petr')
+    ).toEqual('Petr')
   })
 });

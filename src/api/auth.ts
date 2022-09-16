@@ -1,27 +1,28 @@
 import { HTTP } from '../core/HTTP';
 import { BASE_URL_API } from "./constants";
 import Store from "../core/Store/Store";
+import { TResponse, TStatus } from "./";
 
 const httpInstance = new HTTP;
 
 export type TUser = {
-  "id": number,
-  "display_name": "string",
-  "avatar": "string",
+  id: number,
+  display_name: string,
+  avatar: string,
 } & Omit<TSignUpData, 'password'>;
 
 export type TSignUpData = {
-  "first_name": "string",
-  "second_name": "string",
-  "login": "string",
-  "email": "string",
-  "password": "string",
-  "phone": "string"
+  first_name: string,
+  second_name: string,
+  login: string,
+  email: string,
+  password: string,
+  phone: string
 }
 
 export type TLoginData = {
-  "login": "string",
-  "password": "string",
+  login: string,
+  password: string,
 } | {}
 
 export type TSignUp = {
@@ -39,31 +40,31 @@ type TLogin = {
 }
 
 const AuthAPI = {
-  signUp: async (data: TSignUp) => {
+  signUp: async (data: TSignUp): Promise<TResponse<string>> => {
     try {
       const res = await httpInstance.post(`${BASE_URL_API}/api/v2/auth/signup`, data)
       return {
-        status: res.status,
-        response: typeof res.response === 'object' ? JSON.parse(res.response) : res.response
+        status: <TStatus>res.status,
+        response: res.response
       }
     } catch (error) {
       return error;
     }
   },
 
-  login: async (data: TLogin) => {
+  login: async (data: TLogin): Promise<TResponse<string>> => {
     try {
       const res = await httpInstance.post(`${BASE_URL_API}/api/v2/auth/signin`, data)
       return {
-        status: res.status,
-        response: typeof res.response === 'object' ? JSON.parse(res.response) : res.response
+        status: <TStatus>res.status,
+        response: res.response
       }
     } catch (error) {
       return error;
     }
   },
 
-  logout: async () => {
+  logout: async (): Promise<void> => {
     try {
       await httpInstance.post(`${BASE_URL_API}/api/v2/auth/logout`);
       localStorage.removeItem(Store.STORE_NAME);
@@ -72,11 +73,11 @@ const AuthAPI = {
     }
   },
 
-  getUserInfo: async () => {
+  getUserInfo: async (): Promise<TResponse<TUser>> => {
     try {
       const res = await httpInstance.get(`${BASE_URL_API}/api/v2/auth/user`)
       return {
-        status: res.status,
+        status: <TStatus>res.status,
         response: JSON.parse(res.response)
       }
     } catch (error) {

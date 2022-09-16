@@ -1,9 +1,10 @@
-import Component, {TpropsAndChilds} from "../../core/Component";
+import Component from "@core/Component";
 import tpl from "./tpl";
-import ChatItem from "../chatItem";
-import formInput from "../formInput";
-import selectInput from "../selectInput";
+import ChatItem from "@components/chatItem";
+import formInput from "@components/formInput";
+import selectInput from "@components/selectInput";
 import { ChatsAPI } from "../../api";
+import { TChatAPI } from "@api/chats";
 import "./chatList.scss";
 
 export class ChatList extends Component {
@@ -12,35 +13,40 @@ export class ChatList extends Component {
   }
 
   addEvents() {
-    const newChatInput = this._element.querySelector("#new-chat") as HTMLInputElement;
-    const addChatBtn = this._element.querySelector("#add-chat-btn") as HTMLButtonElement;
+    const newChatInput = this._element.querySelector<HTMLInputElement>("#new-chat");
+    const addChatBtn = this._element.querySelector<HTMLButtonElement>("#add-chat-btn");
 
-    const newUserInput = this._element.querySelector("#new-user") as HTMLInputElement;
-    const newUserChatSelect = this._element.querySelector("#new-user-chat") as HTMLSelectElement;
-    const addUserToChatBtn = this._element.querySelector("#add-user-to-chat-btn") as HTMLButtonElement;
+    const newUserInput = this._element.querySelector<HTMLInputElement>("#new-user");
+    const newUserChatSelect = this._element.querySelector<HTMLSelectElement>("#new-user-chat");
+    const addUserToChatBtn = this._element.querySelector<HTMLButtonElement>("#add-user-to-chat-btn");
 
-    addChatBtn.addEventListener("click", (e) => {
+    addChatBtn?.addEventListener("click", (e) => {
       e.preventDefault();
 
-      if(newChatInput.value) {
-        ChatsAPI.addChat({
-          data: {title: newChatInput.value},
-          headers: {'Content-Type': 'application/json'}
-        }).then(newChat => console.log('Добавлен новый чат', newChat))
+      if(newChatInput?.value) {
+        (async () => {
+          const newChat = await ChatsAPI.addChat({
+            data: {title: newChatInput.value},
+            headers: {'Content-Type': 'application/json'}
+          })
+
+          console.log('Добавлен новый чат', newChat)
+        })();
       }
     })
 
-    addUserToChatBtn.addEventListener("click", (e) => {
+    addUserToChatBtn?.addEventListener("click", (e) => {
       e.preventDefault();
 
-      if(newUserInput.value && newUserChatSelect.value) {
-        ChatsAPI.addUserToChat({
-          data: { chatId: +newUserChatSelect.value, users: [ +newUserInput.value ]},
-          headers: {'Content-Type': 'application/json'}
-        }).then(() => console.log(
-          `Пользователь ${newUserInput.value} добавлен в чат ${newUserChatSelect.value}...`
-          )
-        )
+      if(newUserInput?.value && newUserChatSelect?.value) {
+        (async () => {
+          await ChatsAPI.addUserToChat({
+            data: { chatId: +newUserChatSelect.value, users: [ +newUserInput.value ]},
+            headers: {'Content-Type': 'application/json'}
+          })
+
+          console.log(`Пользователь ${newUserInput.value} добавлен в чат ${newUserChatSelect.value}...`)
+        })();
       }
     })
   }
@@ -55,7 +61,7 @@ export type TChat = {
   unread_count: number;
 }
 
-export default (chats: TChat[]): Component => {
+export default (chats: TChatAPI[]): Component => {
   let chatItem1 = null;
   let chatItem2 = null;
   let chatItem3 = null;

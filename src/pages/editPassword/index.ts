@@ -1,9 +1,9 @@
-import Component from "../../core/Component";
-import tpl from "./tpl";
-import formInputEdit from "../../components/formInputEdit";
-import Validation from "../../services/Validation";
+import Component from "@core/Component";
+import formInputEdit from "@components/formInputEdit";
 import { UsersAPI } from "../../api";
-import Router from "../../core/Router";
+import Router from "@core/Router";
+import { validateForm } from "@services/Validation/functions";
+import tpl from "./tpl";
 
 export class EditPassword extends Component {
   render() {
@@ -12,47 +12,35 @@ export class EditPassword extends Component {
   addEvents() {
     this.addEventsForms();
 
-    const form = this._element.querySelector("form") as HTMLFormElement;
-    form.addEventListener("submit", (e) => {
+    const form = this._element.querySelector<HTMLFormElement>("form");
+    form?.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      let errors = 0;
-      const dataForm: {
-        [index: string]: string;
-      } = {};
+      const errorMsg = this._element.querySelector<HTMLElement>(".error");
+      const dataForm = validateForm(this._element);
 
-      const errorMsg = this._element.querySelector(".error") as HTMLElement;
-
-      this._element
-        .querySelectorAll("input")
-        .forEach((input: HTMLInputElement) => {
-          const validationBlock = this._element.querySelector(
-            `#${input.id}-validation`
-          );
-          Validation.focus(
-            input.value,
-            input.id,
-            validationBlock as HTMLElement
-          );
-          if (validationBlock?.innerHTML) errors++;
-          else dataForm[input.id] = input.value;
-        });
-
-      if (!errors) {
+      if (dataForm) {
         const { "newPassword-repeat": newPasswordRepeat, ...editPasswordData } = dataForm;
+        console.log(newPasswordRepeat);
 
-        UsersAPI.editPassword({
-          data: editPasswordData,
-          headers: { 'Content-Type': 'application/json' }
-        }).then(result => {
-          if(result?.status !== 200 && result?.response.reason) {
-            errorMsg.innerText = result?.response.reason
-          } else {
-            (new Router()).go('/edit-password');
+        (async () => {
+          try {
+            const result = await UsersAPI.editPassword({
+              //@ts-ignore
+              data: editPasswordData,
+              headers: { 'Content-Type': 'application/json' }
+            });
+            if(result?.status !== 200) {
+              (errorMsg as HTMLElement).innerText = JSON.parse(result?.response).reason
+            } else {
+              console.log("Form submitted..");
+              (new Router()).go('/edit-password');
+            }
+          } catch(error) {
+            console.log(error)
           }
-        }).catch(error => console.log(error))
+        })();
 
-        console.log("Form submitted..");
       } else console.log("Errors of validation!");
     });
   }

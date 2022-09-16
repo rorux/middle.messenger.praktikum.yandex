@@ -1,6 +1,6 @@
 import EventBus from '../EventBus';
-import { TUser } from "../../api/auth";
-import { TChat } from "../../api/chats";
+import { TUser } from "@api/auth";
+import { TChat } from "@api/chats";
 
 export type TStore = {
   user?: TUser;
@@ -34,6 +34,7 @@ export default class Store extends EventBus {
       () => { localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state)); }
     );
 
+    //@ts-ignore
     window._store = this;
   }
 

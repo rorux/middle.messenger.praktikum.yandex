@@ -1,9 +1,11 @@
-import Component, { TpropsAndChilds } from "../../core/Component";
+import Component, { TpropsAndChilds } from "@core/Component";
+import { Actions } from "@core/Store";
+import { TUser } from "@api/auth"
+import { TChat } from "@api/chats";
 import tpl from "./tpl";
-import { Actions } from "../../core/Store";
 
 const addNewMessage = (className: string, text: string): void => {
-  const messageListWrap = document.querySelector("#message-list") as HTMLDivElement;
+  const messageListWrap = document.querySelector<HTMLDivElement>("#message-list");
 
   const paragraph = document.createElement('p');
   paragraph.innerText = text;
@@ -11,15 +13,13 @@ const addNewMessage = (className: string, text: string): void => {
   div.className = className;
 
   div.appendChild(paragraph);
-  messageListWrap.appendChild(div);
+  messageListWrap?.appendChild(div);
 }
 
 export default class MessageFormSubmit extends Component {
   constructor(tagName: string, props: TpropsAndChilds) {
-    //@ts-ignore
-    const userId = Actions.getUserState().id;
-    //@ts-ignore
-    const chatId = Actions.getChatState().id;
+    const userId = (Actions.getUserState() as TUser).id;
+    const chatId = (Actions.getChatState() as TChat).id;
     const token = Actions.getTokenState()
     props.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`)
     super(tagName, props);
@@ -28,12 +28,12 @@ export default class MessageFormSubmit extends Component {
     return this.compile(tpl);
   }
   addEvents() {
-    const sendMessageBtn = this._element.querySelector("#send-message") as SVGElement;
+    const sendMessageBtn = this._element.querySelector<SVGElement>("#send-message");
 
-    sendMessageBtn.addEventListener("click", () => {
-      const messageInput = document.querySelector("#message") as HTMLInputElement;
+    sendMessageBtn?.addEventListener("click", () => {
+      const messageInput = document.querySelector<HTMLInputElement>("#message");
 
-      if(messageInput.value) {
+      if(messageInput?.value) {
         const socket = this._props.socket;
         (socket as WebSocket).send(JSON.stringify({
           content: messageInput.value,
@@ -45,8 +45,7 @@ export default class MessageFormSubmit extends Component {
 
     (this._props.socket as WebSocket).addEventListener('message', event => {
       const messageFromServer = JSON.parse(event.data);
-      //@ts-ignore
-      const className = messageFromServer.user_id === Actions.getUserState().id
+      const className = messageFromServer.user_id === (Actions.getUserState() as TUser).id
           ? 'messages__me'
           : 'messages__friend';
 
@@ -64,6 +63,7 @@ export default class MessageFormSubmit extends Component {
     });
 
     (this._props.socket as WebSocket).addEventListener('error', event => {
+      //@ts-ignore
       console.log('Ошибка', event.message);
     });
   }
